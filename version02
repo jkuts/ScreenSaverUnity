@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class importImages : MonoBehaviour {
+
+	private Sprite[] ImageData;
+	private SpriteRenderer spriteR;
+
+	private GameObject firstImage;
+
+	// Use this for initialization
+	void Start () {
+
+		ImageData = Resources.LoadAll<Sprite>("Images");
+		Debug.Log (ImageData.Length);
+
+		for (int i = 0; i < ImageData.Length; i++) {
+
+			Debug.Log (ImageData[i].name);
+		}
+
+		firstImage = new GameObject ("firstImage");
+		firstImage.AddComponent<SpriteRenderer> ();
+		spriteR = firstImage.GetComponent<SpriteRenderer> ();
+		spriteR.sprite = ImageData [0];
+
+	}
+	
+
+}
