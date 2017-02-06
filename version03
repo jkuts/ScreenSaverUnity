@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class importImages : MonoBehaviour {
+
+	private Sprite[] ImageData;     //sprite type array called ImageData declaration 
+	private SpriteRenderer spriteR;    //sprite renderer type declaration
+
+    private GameObject arrayImages;  //gameobjec to hold sprite image;
+
+	// Use this for initialization
+
+
+	void Awake(){
+
+
+		ImageData = Resources.LoadAll<Sprite>("Images");  //loads the sprite images from the resource/images folder into the sprite array
+
+	}
+	void Start () {
+		
+		Debug.Log (ImageData.Length); //displays the length of the array
+		for (int i = 0; i < ImageData.Length; i++) {   //displays the names of the items on the array
+
+			Debug.Log (ImageData[i].name);
+		}
+
+		foreach (Sprite spriteImages in ImageData){
+
+			arrayImages = new GameObject (spriteImages.name);
+			arrayImages.AddComponent<SpriteRenderer> ();
+			spriteR = arrayImages.GetComponent<SpriteRenderer> ();
+			spriteR.sprite = spriteImages;
+		}
+		/*
+		firstImage = new GameObject ("firstImage");  //creates the gameobject
+		firstImage.AddComponent<SpriteRenderer> ();   //adds a SpriteRenderer component to the game object
+		spriteR = firstImage.GetComponent<SpriteRenderer> ();  //gets the sprite component from the new game object
+		spriteR.sprite = ImageData [0];  //sets the sprite image to the sprite renderer component.
+        */
+	}
+	
+
+}
